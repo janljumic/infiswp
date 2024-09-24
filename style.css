@@ -1,1 +1,6 @@
-body {background-color: cornflowerblue;}
+head {background-color: cornflowerblue;}
+
+image {
+    width: 50%;
+    height: 50%;
+}
