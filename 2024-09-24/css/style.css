@@ -1,0 +1,31 @@
+#static{
+    position: static;
+    height: 300px;
+    width: 450px;
+    margin: 2px;
+    background-color: rgb(255, 0, 0);
+
+}
+#relative{
+    position: relative;
+    height: 200px;
+    width: 450px;
+    margin: 2px;
+    background-color: rgb(255, 42, 0);
+    top: 500px;
+
+}
+#absolute{
+    position:absolute;
+    height: 300px;
+    width: 450px;
+    margin: 2px;
+    background-color: rgb(255, 55, 0);
+    left: 1150px;
+
+
+}
+#image{
+    height: 200px;
+    width: 300px;
+}
