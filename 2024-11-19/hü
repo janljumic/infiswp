@@ -1,0 +1,81 @@
+const dataPath = '../nmap-datenfiles'; 
+const outputFile = './output.txt'; 
+
+function parseDate(dateStr: string): Date {
+    const p = dateStr.split('_');
+    if (p.length < 5) {
+        throw new Error(`Ungültiges Datumsformat: ${dateStr}`);
+    }
+    return new Date(`${p[0]}-${p[1]}-${p[2]}T${p[3]}:${p[4]}:00Z`);
+}
+
+async function main() {
+    try {
+        
+        try {
+            await Deno.stat(dataPath);
+        } catch (err) {
+            console.error(`Fehler: Verzeichnis '${dataPath}' existiert nicht.`);
+            return;
+        }
+
+       
+        const dirEntries = Deno.readDir(dataPath);
+        let outputData = ""; 
+
+        for await (const dirEntry of dirEntries) {
+            if (!dirEntry.isFile) continue;
+
+            let date: Date;
+            try {
+                date = parseDate(dirEntry.name);
+            } catch (err) {
+                console.error(`Fehler beim Parsen des Datums: ${dirEntry.name} - ${err.message}`);
+                continue;
+            }
+
+            const filePath = `${dataPath}/${dirEntry.name}`;
+            let host = undefined;
+            let mac = undefined;
+
+            try {
+                const lines = (await Deno.readTextFile(filePath)).replace(/\r/g, '').split('\n');
+                for (const line of lines) {
+                    if (
+                        line.trim() === '' ||
+                        line.startsWith('Starting Nmap') ||
+                        line.startsWith('Nmap done') ||
+                        line.startsWith('Host is up')
+                    ) {
+                        continue;
+                    }
+                    if (line.startsWith('Nmap scan report for ')) {
+                        host = line.split(' ')[4];
+                        continue;
+                    }
+                    if (line.startsWith('MAC Address: ')) {
+                        mac = line.split(' ')[2].toLowerCase();
+                        const result = `${date.toISOString()};${host};${mac}`;
+                        console.log(result); 
+                        outputData += result + '\n'; 
+                    }
+                }
+            } catch (err) {
+                console.error(`Fehler beim Lesen der Datei: ${filePath} - ${err.message}`);
+                continue;
+            }
+        }
+
+        
+        try {
+            await Deno.writeTextFile(outputFile, outputData);
+            console.log(`Alle Ergebnisse wurden in die Datei '${outputFile}' geschrieben.`);
+        } catch (err) {
+            console.error(`Fehler beim Schreiben der Datei: ${outputFile} - ${err.message}`);
+        }
+    } catch (err) {
+        console.error(`Allgemeiner Fehler: ${err.message}`);
+    }
+}
+
+await main();
