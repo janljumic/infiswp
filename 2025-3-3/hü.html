@@ -1,0 +1,31 @@
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fortnite Basics</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <header>
+        <h1>Willkommen bei Fortnite</h1>
+    </header>
+    <main>
+        <p>Fortnite ist ein beliebtes Battle Royale-Spiel, in dem 100 Spieler gegeneinander antreten.</p>
+        <button onclick="zeigeTipp()">Zeige einen Fortnite-Tipp</button>
+        <p id="tipp"></p>
+    </main>
+    <script>
+        function zeigeTipp() {
+            const tipps = [
+                "Sammle immer genügend Materialien für den Kampf!",
+                "Nutze hohe Positionen, um einen Vorteil zu haben!",
+                "Spiele mit Kopfhörern, um Gegner besser zu hören!",
+                "Bleibe in Bewegung, um nicht getroffen zu werden!"
+            ];
+            const zufallsTipp = tipps[Math.floor(Math.random() * tipps.length)];
+            document.getElementById("tipp").innerText = zufallsTipp;
+        }
+    </script>
+</body>
+</html>
