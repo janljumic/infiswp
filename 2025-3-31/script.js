@@ -29,7 +29,7 @@ const einnahmenSpan = document.getElementById("einnahmen");
 const ticketKaufen = document.getElementById("ticketKaufen");
 const resetBtn = document.getElementById("reset");
 
-
+ö
 function updateFahrpreis() {
     if (state.ziel) {
         state.fahrpreis = zieleUndPreise[state.ziel] * state.anzahlPersonen;

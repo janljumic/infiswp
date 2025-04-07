@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz ohne JavaScript</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #eef2f7;
+      padding: 30px;
+    }
+
+    .quiz-box {
+      background: white;
+      max-width: 600px;
+      margin: auto;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    .question h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    label {
+      display: block;
+      background: #f4f4f4;
+      border: 1px solid #ccc;
+      padding: 10px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    input[type="radio"] {
+      margin-right: 10px;
+    }
+
+    label:hover {
+      background: #e0e0e0;
+    }
+
+    .submit-area {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    input[type="submit"] {
+      background-color: #28a745;
+      color: white;
+      padding: 12px 24px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #218838;
+    }
+
+    .info-text {
+      margin-top: 30px;
+      font-size: 14px;
+      color: #555;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-box">
+    <h1>Mini-Quiz</h1>
+    <form action="#" method="post">
+      
+      <div class="question">
+        <h3>1. Welches Tier ist ein Säugetier?</h3>
+        <label><input type="radio" name="q1"> Hai</label>
+        <label><input type="radio" name="q1"> Pinguin</label>
+        <label><input type="radio" name="q1"> Delfin</label> <!-- richtig -->
+        <label><input type="radio" name="q1"> Krokodil</label>
+      </div>
+
+      <div class="question">
+        <h3>2. Wie viele Beine hat eine Spinne?</h3>
+        <label><input type="radio" name="q2"> 6</label>
+        <label><input type="radio" name="q2"> 8</label> <!-- richtig -->
+        <label><input type="radio" name="q2"> 10</label>
+        <label><input type="radio" name="q2"> 12</label>
+      </div>
+
+      <div class="submit-area">
+        <input type="submit" value="Antworten prüfen">
+      </div>
+    </form>
+
+    <div class="info-text">
+      Hinweis: Dieses Quiz funktioniert ohne JavaScript.<br>
+      Die Auswertung erfolgt entweder per Hand oder auf der nächsten Seite.
+    </div>
+  </div>
+</body>
+</html>
+
